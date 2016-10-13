@@ -170,6 +170,12 @@ var course2 = {
 console.log("Course 2 Object: ", course2);
 
 
+course2["web site"] = "https://....";
+
+
+
+
+
 console.groupEnd();
 
 ///////////////////////////////////////////////////////////
@@ -207,12 +213,14 @@ console.group("PRACTICE: Arrays");
 //--PRACTICE--
 //create another array of playing card suits
 //(clubs, diamonds, hearts, spades)
-
+var suits = ["clubs", "diamonds", "hearts", "spades"];
+console.log("suits: ", suits);
 
 //then add a new element named "jokers"
 //afer adding it, access it in the array
 //and log it to the console
-
+suits.push("jokers");
+console.log(suits[suits.length - 1], suits);
 
 
 console.groupEnd();
@@ -351,7 +359,21 @@ console.group("PRACTICE: Functions");
 //and returns the minimum of the two, or the first argument
 //if they are equal to each other. Then call it a few times
 //with various numbers to test it.
+function minimum(n1, n2) {
+    return n2 < n1 ? n2 : n1;
+}
 
+
+/*function minimum(num1, num2) {
+    var min = 0;
+    if (num1 == num2) {
+        return num1;
+    } else if (num1 <= num2) {
+        return num1;
+    } else {
+        return num2;
+    }
+}*/
 
 console.groupEnd();
 
@@ -426,6 +448,7 @@ function generateRandomNumbers(howMany, minimum, maximum) {
 }
 
 //>>> your code goes here!
+array listOfNums = [];
 
 
 //now use the .sort() method on a generated array of random
