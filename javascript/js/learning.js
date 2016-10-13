@@ -80,12 +80,16 @@ console.group("PRACTICE: Strings");
 //with some text, and then create another string `s4`
 //and assign it the concatenation of `s2` and `s3`
 //then write it to the console so you can verify it worked.
-
+var s2 = "Why, Hello, ";
+var s3 = "How do you do?";
+var s4 = s2 + s3;
+console.log(s4);
 
 //use the `.trim()` method to remove the leading and
 //trailing white space from this string
 var withSpaces = "    trim those spaces!     ";
-
+var trimmedString = withSpaces.trim();
+console.log(trimmedString);
 
 console.groupEnd();
 
@@ -159,8 +163,11 @@ console.group("PRACTICE: Objects");
 
 //now try adding a property named `web site` (with a space)
 //setting it to some string value...it's tricky...
+var course2 = {
+    'Web site': "blarghg"
+}
 
-
+console.log("Course 2 Object: ", course2);
 
 
 console.groupEnd();
