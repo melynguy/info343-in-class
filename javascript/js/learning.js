@@ -41,11 +41,13 @@ console.group("PRACTICE: Variables and Basic Types");
 //Create another variable named `y`, assign it the value
 //currently held in the variable `x`, and write the value
 //of `y` to the console log
-
+var y = x;
+console.log(y);
 
 //now assign `y` the numeric value 10
 //what does x contain now? Write it to the console
-
+y = 10;
+console.log(x);
 
 console.groupEnd();
 
