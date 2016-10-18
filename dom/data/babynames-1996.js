@@ -1,5 +1,6 @@
 var BABYNAMES = [
     {
+        /*object = hashmap*/
         "name": "Aadam",
         "sex": "M",
         "count": 5
