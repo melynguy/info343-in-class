@@ -6,3 +6,4 @@ var boxOne = document.getElementById('one'),
 	boxFour = document.getElementById('four'),
 	boxFive = document.getElementById('five'),
 	boxSix = document.getElementById('six');
+

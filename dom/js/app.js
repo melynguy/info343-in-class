@@ -71,7 +71,7 @@ searchInput.addEventListener("input", function() {
     render(matches);
 });
 
-var countColHeading = document.getElementByID("count-col-header");
+var countColHeading = document.getElementById("count-col-header");
 countColHeading.addEventListener("click", function() {
     //console.log("clicked col header!");
     BABYNAMES.sort(descending(compareByCount));
