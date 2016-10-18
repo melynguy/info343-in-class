@@ -448,7 +448,7 @@ function generateRandomNumbers(howMany, minimum, maximum) {
 }
 
 //>>> your code goes here!
-array listOfNums = [];
+
 
 
 //now use the .sort() method on a generated array of random
