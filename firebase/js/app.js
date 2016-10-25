@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 var taskForm = document.querySelector(".new-task-form");
 var taskTitleInput = taskForm.querySelector(".new-task-title");
 var taskList = document.querySelector(".task-list");
-
+var purgeButton = document.querySelector(".btn-purge");
 var tasksRef = firebase.database().ref("tasks");
 
 taskForm.addEventListener("submit", function(evt) {
@@ -60,12 +60,51 @@ taskForm.addEventListener("submit", function(evt) {
 });
 
 function renderTask(snapshot) {
-    
+    var task = snapshot.val();
+    var li = document.createElement("li");
+    //li.textContent = task.title;
+
+    var spanTitle = document.createElement("span");
+    spanTitle.textContent = task.title;
+    spanTitle.classList.add("task-title");
+    li.appendChild(spanTitle);
+
+    var spanCreation = document.createElement("span");
+    spanCreation.textContent = moment(task.createdOn).fromNow()
+    + " by " + (task.createdBy.displayName || task.createBy.email);
+    spanCreation.classList.add("task-creation");
+    li.appendChild(spanCreation);
+
+    if (task.done) {
+        li.classList.add("done");
+        purgeButton.classList.remove("hidden");
+    }
+
+    li.addEventListener("click", function() {
+        //console.log("click for" + task.title);
+        snapshot.ref.update({
+            done: !task.done
+        });
+    });
+
+    taskList.appendChild(li);
 }
 
 function render(snapshot) {
     taskList.innerHTML = "";
+    purgeButton.classList.add("hidden");
     snapshot.forEach(renderTask);
 }
 
-taskRef.on("value", render);
+tasksRef.on("value", render);
+
+purgeButton.addEventListener("click", function() {
+    //console.log("purge button clicked!");
+    tasksRef.once("value", function(snapshot) {
+        snapshot.forEach(function(taskSnapshot) {
+            if (taskSnapshot.val().done) {
+                taskSnapshot.ref.remove();
+            }
+        });
+    });
+});
