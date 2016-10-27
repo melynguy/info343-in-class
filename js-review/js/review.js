@@ -110,7 +110,10 @@ logValue("2016-10-27", formatAsDate);
 var someNumber = 123456789;
 //logValue(...)
 
+logValue(someNumber, formatAsNumber);
+logValue(someNumber, formatAsCurrency);
 
+console.groupEnd();
 
 
 
