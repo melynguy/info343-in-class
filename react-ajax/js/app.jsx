@@ -9,6 +9,19 @@
 //and q=... (string to search for, which we will get from the user)
 const baseURL = "https://api.spotify.com/v1/search?type=track&q=";
 
+class TrackList extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        if (props.tracks) {
+            var titles = props.tracks.items.map(track => <p>{track.name}</p>);
+
+            return titles;
+        }
+    }
+}
 
 /**
  * SpotifyApp - main application component
@@ -22,16 +35,30 @@ class SpotifyApp extends React.Component {
         };
     }
 
+    handleChange(event) {
+            this.setState({query: event.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        //console.log(this.state.query);
+        fetch(baseURL + this.state.query)
+            .then(response => response.json())
+            .then(data => this.setState({tracks: data.tracks}))
+    }
+
     render() {
         return (
             <div>
-                <form className="search-form">
+                <form className="search-form"
+                    onSubmit={event => this.handleSubmit(event)}>
                     <div className="input-group">
                         <input type="text" className="form-control"
                             value={this.state.query} 
                             placeholder="what do you want to listen to?"
                             autoFocus                              
-                            required />
+                            required 
+                            onChange={event => this.handleChange(event)}/>
                         <span className="input-group-btn">
                             <button className="btn btn-primary" 
                                 aria-label="search spotify">
@@ -43,7 +70,7 @@ class SpotifyApp extends React.Component {
                     </div>
                 </form>
 
-
+                <TrackList tracks={this.state.tracks}/>
 
             </div>
         );
